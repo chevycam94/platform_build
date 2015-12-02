@@ -1235,7 +1235,6 @@ class BlockDifference(object):
     if progress:
       script.ShowProgress(progress, 0)
     self._WriteUpdate(script, output_zip)
-    self._WritePostInstallVerifyScript(script)
 
   def WriteVerifyScript(self, script):
     partition = self.partition
