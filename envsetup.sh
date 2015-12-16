@@ -1,44 +1,44 @@
 function hmm() {
 cat <<EOF
 Invoke ". build/envsetup.sh" from your shell to add the following functions to your environment:
-- lunch:   lunch <product_name>-<build_variant>
-- tapas:   tapas [<App1> <App2> ...] [arm|x86|mips|armv5|arm64|x86_64|mips64] [eng|userdebug|user]
-- croot:   Changes directory to the top of the tree.
-- cout:    Changes directory to out.
-- m:       Makes from the top of the tree.
-- mm:      Builds all of the modules in the current directory, but not their dependencies.
-- mmm:     Builds all of the modules in the supplied directories, but not their dependencies.
-           To limit the modules being built use the syntax: mmm dir/:target1,target2.
-- mma:     Builds all of the modules in the current directory, and their dependencies.
-- mmp:     Builds all of the modules in the current directory and pushes them to the device.
-- mmmp:    Builds all of the modules in the supplied directories and pushes them to the device.
-- mmma:    Builds all of the modules in the supplied directories, and their dependencies.
-- cgrep:   Greps on all local C/C++ files.
-- ggrep:   Greps on all local Gradle files.
-- jgrep:   Greps on all local Java files.
-- resgrep: Greps on all local res/*.xml files.
-- mangrep: Greps on all local AndroidManifest.xml files.
-- sepgrep: Greps on all local sepolicy files.
-- sgrep:   Greps on all local source files.
-- godir:   Go to the directory containing a file.
-- cmremote: Add git remote for CM Gerrit Review
-- cmgerrit: A Git wrapper that fetches/pushes patch from/to CM Gerrit Review
-- cmrebase: Rebase a Gerrit change and push it again
-- aospremote: Add git remote for matching AOSP repository
-- cafremote: Add git remote for matching CodeAurora repository.
-- mka:      Builds using SCHED_BATCH on all processors
-- mkap:     Builds the module(s) using mka and pushes them to the device.
-- cmka:     Cleans and builds using mka.
-- repolastsync: Prints date and time of last repo sync.
-- reposync: Parallel repo sync using ionice and SCHED_BATCH
-- repopick: Utility to fetch changes from Gerrit.
-- installboot: Installs a boot.img to the connected device.
-- installrecovery: Installs a recovery.img to the connected device.
+- lunch:            lunch <product_name>-<build_variant>
+- tapas:            tapas [<App1> <App2> ...] [arm|x86|mips|armv5|arm64|x86_64|mips64] [eng|userdebug|user]
+- croot:            Changes directory to the top of the tree.
+- cout:             Changes directory to out.
+- m:                Makes from the top of the tree.
+- mm:               Builds all of the modules in the current directory, but not their dependencies.
+- mmm:              Builds all of the modules in the supplied directories, but not their dependencies.
+                        To limit the modules being built use the syntax: mmm dir/:target1,target2.
+- mma:              Builds all of the modules in the current directory, and their dependencies.
+- mmp:              Builds all of the modules in the current directory and pushes them to the device.
+- mmmp:             Builds all of the modules in the supplied directories and pushes them to the device.
+- mmma:             Builds all of the modules in the supplied directories, and their dependencies.
+- cgrep:            Greps on all local C/C++ files.
+- ggrep:            Greps on all local Gradle files.
+- jgrep:            Greps on all local Java files.
+- resgrep:          Greps on all local res/*.xml files.
+- mangrep:          Greps on all local AndroidManifest.xml files.
+- sepgrep:          Greps on all local sepolicy files.
+- sgrep:            Greps on all local source files.
+- godir:            Go to the directory containing a file.
+- cmremote:         Add git remote for CM Gerrit Review
+- cmgerrit:         A Git wrapper that fetches/pushes patch from/to CM Gerrit Review
+- cmrebase:         Rebase a Gerrit change and push it again
+- aospremote:       Add git remote for matching AOSP repository
+- cafremote:        Add git remote for matching CodeAurora repository.
+- mka:              Builds using SCHED_BATCH on all processors
+- mkap:             Builds the module(s) using mka and pushes them to the device.
+- cmka:             Cleans and builds using mka.
+- repolastsync:     Prints date and time of last repo sync.
+- reposync:         Parallel repo sync using ionice and SCHED_BATCH
+- repopick:         Utility to fetch changes from Gerrit.
+- installboot:      Installs a boot.img to the connected device.
+- installrecovery:  Installs a recovery.img to the connected device.
 
 Environemnt options:
-- SANITIZE_HOST: Set to 'true' to use ASAN for all host modules. Note that
-                 ASAN_OPTIONS=detect_leaks=0 will be set by default until the
-                 build is leak-check clean.
+- SANITIZE_HOST:    Set to 'true' to use ASAN for all host modules. Note that
+                    ASAN_OPTIONS=detect_leaks=0 will be set by default until the
+                    build is leak-check clean.
 
 Look at the source to view more functions. The complete list is:
 EOF
@@ -493,12 +493,12 @@ function add_lunch_combo()
 }
 
 # add the default one here
-add_lunch_combo aosp_arm-eng
-add_lunch_combo aosp_arm64-eng
-add_lunch_combo aosp_mips-eng
-add_lunch_combo aosp_mips64-eng
-add_lunch_combo aosp_x86-eng
-add_lunch_combo aosp_x86_64-eng
+#add_lunch_combo aosp_arm-eng
+#add_lunch_combo aosp_arm64-eng
+#add_lunch_combo aosp_mips-eng
+#add_lunch_combo aosp_mips64-eng
+#add_lunch_combo aosp_x86-eng
+#add_lunch_combo aosp_x86_64-eng
 
 function print_lunch_menu()
 {
@@ -1041,18 +1041,18 @@ function qpid() {
         append='$'
         shift
     elif [ "$1" = "--help" -o "$1" = "-h" ]; then
-		echo "usage: qpid [[--exact] <process name|pid>"
-		return 255
-	fi
+        echo "usage: qpid [[--exact] <process name|pid>"
+        return 255
+    fi
 
     local EXE="$1"
     if [ "$EXE" ] ; then
-		qpid | \grep "$prepend$EXE$append"
-	else
-		adb shell ps \
-			| tr -d '\r' \
-			| sed -e 1d -e 's/^[^ ]* *\([0-9]*\).* \([^ ]*\)$/\1 \2/'
-	fi
+        qpid | \grep "$prepend$EXE$append"
+    else
+        adb shell ps \
+            | tr -d '\r' \
+            | sed -e 1d -e 's/^[^ ]* *\([0-9]*\).* \([^ ]*\)$/\1 \2/'
+    fi
 }
 
 function pid()
@@ -1073,7 +1073,7 @@ function pid()
         echo "$PID"
     else
         echo "usage: pid [--exact] <process name>"
-		return 255
+        return 255
     fi
 }
 
@@ -1086,25 +1086,25 @@ function pid()
 
 function coredump_setup()
 {
-	echo "Getting root...";
-	adb root;
-	adb wait-for-device;
+    echo "Getting root...";
+    adb root;
+    adb wait-for-device;
 
-	echo "Remounting root parition read-write...";
-	adb shell mount -w -o remount -t rootfs rootfs;
-	sleep 1;
-	adb wait-for-device;
-	adb shell mkdir -p /cores;
-	adb shell mount -t tmpfs tmpfs /cores;
-	adb shell chmod 0777 /cores;
+    echo "Remounting root parition read-write...";
+    adb shell mount -w -o remount -t rootfs rootfs;
+    sleep 1;
+    adb wait-for-device;
+    adb shell mkdir -p /cores;
+    adb shell mount -t tmpfs tmpfs /cores;
+    adb shell chmod 0777 /cores;
 
-	echo "Granting SELinux permission to dump in /cores...";
-	adb shell restorecon -R /cores;
+    echo "Granting SELinux permission to dump in /cores...";
+    adb shell restorecon -R /cores;
 
-	echo "Set core pattern.";
-	adb shell 'echo /cores/core.%p > /proc/sys/kernel/core_pattern';
+    echo "Set core pattern.";
+    adb shell 'echo /cores/core.%p > /proc/sys/kernel/core_pattern';
 
-	echo "Done."
+    echo "Done."
 }
 
 # coredump_enable - enable core dumps for the specified process
@@ -1115,13 +1115,13 @@ function coredump_setup()
 
 function coredump_enable()
 {
-	local PID=$1;
-	if [ -z "$PID" ]; then
-		printf "Expecting a PID!\n";
-		return;
-	fi;
-	echo "Setting core limit for $PID to infinite...";
-	adb shell prlimit $PID 4 -1 -1
+    local PID=$1;
+    if [ -z "$PID" ]; then
+        printf "Expecting a PID!\n";
+        return;
+    fi;
+    echo "Setting core limit for $PID to infinite...";
+    adb shell prlimit $PID 4 -1 -1
 }
 
 # core - send SIGV and pull the core for process
@@ -1132,28 +1132,28 @@ function coredump_enable()
 
 function core()
 {
-	local PID=$1;
+    local PID=$1;
 
-	if [ -z "$PID" ]; then
-		printf "Expecting a PID!\n";
-		return;
-	fi;
+    if [ -z "$PID" ]; then
+        printf "Expecting a PID!\n";
+        return;
+    fi;
 
-	local CORENAME=core.$PID;
-	local COREPATH=/cores/$CORENAME;
-	local SIG=SEGV;
+    local CORENAME=core.$PID;
+    local COREPATH=/cores/$CORENAME;
+    local SIG=SEGV;
 
-	coredump_enable $1;
+    coredump_enable $1;
 
-	local done=0;
-	while [ $(adb shell "[ -d /proc/$PID ] && echo -n yes") ]; do
-		printf "\tSending SIG%s to %d...\n" $SIG $PID;
-		adb shell kill -$SIG $PID;
-		sleep 1;
-	done;
+    local done=0;
+    while [ $(adb shell "[ -d /proc/$PID ] && echo -n yes") ]; do
+        printf "\tSending SIG%s to %d...\n" $SIG $PID;
+        adb shell kill -$SIG $PID;
+        sleep 1;
+    done;
 
-	adb shell "while [ ! -f $COREPATH ] ; do echo waiting for $COREPATH to be generated; sleep 1; done"
-	echo "Done: core is under $COREPATH on device.";
+    adb shell "while [ ! -f $COREPATH ] ; do echo waiting for $COREPATH to be generated; sleep 1; done"
+    echo "Done: core is under $COREPATH on device.";
 }
 
 # systemstack - dump the current stack trace of all threads in the system process
