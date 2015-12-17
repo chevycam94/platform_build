@@ -240,8 +240,7 @@ def BuildImage(in_dir, prop_dict, out_file, target_out=None):
 
   build_command = []
   fs_type = prop_dict.get("fs_type", "")
-  # Lets just not run this at all  
-  #run_fsck = False
+  run_fsck = False
 
   fs_spans_partition = True
   if fs_type.startswith("squash"):
@@ -395,6 +394,7 @@ def BuildImage(in_dir, prop_dict, out_file, target_out=None):
 
   return exit_code == 0
 
+
 def ImagePropFromGlobalDict(glob_dict, mount_point):
   """Build an image property dictionary from the global dictionary.
 
@@ -466,6 +466,7 @@ def ImagePropFromGlobalDict(glob_dict, mount_point):
 
   return d
 
+
 def LoadGlobalDict(filename):
   """Load "name=value" pairs from filename"""
   d = {}
@@ -478,6 +479,7 @@ def LoadGlobalDict(filename):
     d[k] = v
   f.close()
   return d
+
 
 def main(argv):
   if len(argv) != 4:
@@ -518,6 +520,6 @@ def main(argv):
                                                                 in_dir)
     exit(1)
 
+
 if __name__ == '__main__':
   main(sys.argv[1:])
-
