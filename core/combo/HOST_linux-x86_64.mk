@@ -41,7 +41,7 @@ HOST_GLOBAL_CFLAGS += -fPIC \
   -include $(call select-android-config-h,linux-x86)
 
 # TODO: Set _FORTIFY_SOURCE=2. Bug 20558757.
-HOST_GLOBAL_CFLAGS += -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0 -fstack-protector-strong
+HOST_GLOBAL_CFLAGS += -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0 -fstack-protector
 
 # Workaround differences in inttypes.h between host and target.
 # See bug 12708004.
