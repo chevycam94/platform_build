@@ -43,20 +43,6 @@ else
 TARGET_GCC_VERSION := $(TARGET_GCC_VERSION_EXP)
 endif
 
-ifneq ($(strip $(GCC_VERSION_KERNEL)),)
-$(combo_2nd_arch_prefix)TARGET_LEGACY_GCC_VERSION := $(GCC_VERSION_KERNEL)
-else
-$(combo_2nd_arch_prefix)TARGET_LEGACY_GCC_VERSION := 4.9
-endif
-
-ifneq ($(strip $(GCC_VERSION_ROM)),)
-$(combo_2nd_arch_prefix)TARGET_GCC_VERSION := $(GCC_VERSION_ROM)
-endif
-
-ifneq ($(strip $(GCC_VERSION_NDK)),)
-$(combo_2nd_arch_prefix)TARGET_NDK_GCC_VERSION := $(GCC_VERSION_NDK)
-endif
-
 TARGET_ARCH_SPECIFIC_MAKEFILE := $(BUILD_COMBOS)/arch/$(TARGET_ARCH)/$(TARGET_ARCH_VARIANT).mk
 ifeq ($(strip $(wildcard $(TARGET_ARCH_SPECIFIC_MAKEFILE))),)
 $(error Unknown ARM architecture version: $(TARGET_ARCH_VARIANT))
